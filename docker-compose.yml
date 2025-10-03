@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: faculty-newspaper-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: faculty_newspaper
+      MYSQL_USER: faculty_user
+      MYSQL_PASSWORD: faculty_pass
+      MYSQL_ROOT_PASSWORD: rootpass
+      TZ: Europe/Kyiv
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+volumes:
+  dbdata:
+
