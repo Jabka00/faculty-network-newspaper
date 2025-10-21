@@ -19,7 +19,7 @@ mkConnectInfo = do
   host <- fromMaybe "127.0.0.1" <$> lookupEnv "DB_HOST"
   mPort <- lookupEnv "DB_PORT"
   let port :: Int
-      port = maybe 3306 read mPort
+      port = maybe 3307 read mPort
   dbn  <- fromMaybe "faculty_newspaper"   <$> lookupEnv "DB_NAME"
   usr  <- fromMaybe "faculty_user"        <$> lookupEnv "DB_USER"
   pwd  <- fromMaybe "faculty_pass"        <$> lookupEnv "DB_PASS"
@@ -46,4 +46,3 @@ withPool action = do
 
 withConn :: DbPool -> (Connection -> IO a) -> IO a
 withConn = withResource
-
